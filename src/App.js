@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import AppList from './components/AppList';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import AppAddStyle from './components/AppAddStyle';
+import ListItemComponent from './components/ListItemComponent';
+import EditForm from './components/EditForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route component={AppList} path='/' exact />
+          <Route component={AppAddStyle} path='/app-add-style' />
+          <Route component={ListItemComponent} path='/app-list/:uId' />
+          <Route component={EditForm} path='/edit-form/:uId' />
+          <Route render={() => <p>Page Not Found</p>} path='*' />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
